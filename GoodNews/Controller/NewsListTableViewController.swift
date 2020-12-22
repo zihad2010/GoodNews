@@ -21,7 +21,7 @@ class NewsListTableViewController: UITableViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         Websevice().getArticles(url: URL.url!) { (articles) in
-            print(articles as Any)
+            print("xyz:",articles as Any)
             if let articles = articles{
                 self.articleListVM = ArticleListViewModel(articles: articles)
               

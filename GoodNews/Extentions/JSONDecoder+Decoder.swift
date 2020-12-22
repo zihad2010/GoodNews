@@ -7,16 +7,16 @@
 
 import Foundation
 
-enum DecoderResult<data,error>{
+
+enum DecodeResult<data, error> {
     case success(data)
     case failure(error)
 }
 
-typealias DecoderHandler = (DecoderResult<Decodable,Error>)->Void
+typealias DecodeHandler = (DecodeResult<Decodable,Error>) -> Void
 
 extension JSONDecoder{
-    
-    static func decodeData<Model: Decodable>(model: Model.Type,_ data:Data,completion: @escaping(DecoderHandler)){
+    static func decodeData<Model: Decodable>(model: Model.Type,_ data:Data,completion: @escaping(DecodeHandler)){
         let decoder = JSONDecoder()
         do {
             let data = try decoder.decode(Model.self, from: data)

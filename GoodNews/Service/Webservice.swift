@@ -17,20 +17,20 @@ class Websevice {
                 completion(nil)
             }else if let data = data{
                 
-                JSONDecoder.decodeData(model: ArticalList.self, data) { [weak self](result) in
-                  
+                JSONDecoder.decodeData(model: ArticalList.self, data) { (result) in
+                    
                     switch result{
                     case .success(let data ):
-                        print(data)
-                        completion(data as? [Article])
+                        let data:ArticalList = data as! ArticalList
+                        completion(data.articles)
                         break
-                    case .failure(let mess):
-                        print("Parse data error:",mess.localizedDescription)
+                    case .failure(let error):
+                        print("Parse data error:",error.localizedDescription)
                         break
                     }
                 }
-                
             }
         }.resume()
     }
+    
 }
